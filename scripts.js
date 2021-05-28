@@ -1,13 +1,13 @@
 function templateArticle (unArticle){
-    return `<div class="col-4">
+    return `<div class="col-4 my-2">
     <div class="card template-product">
-      <img src="${unArticle.imageUrl}" class="card-img-top" alt="">
+      <img src="${unArticle.imageUrl}" class="card-img-top" alt="ours en peluche">
       <div class="card-body">
         <h5 class="name-product py-2">${unArticle.name}</h5>
         <p class="description-product"> Description : ${unArticle.description}</p>
         <p class="price-product"> Prix : ${unArticle.price} $</p>
         <div class="d-flex justify-content-center my-1">
-        <button type="button" class="btn btn-dark">Voir l'article</button>
+        <a class="btn btn-primary" href="./focusproduit.html" role="button">Voir l'article</a>
         </div>
       </div>
     </div>
