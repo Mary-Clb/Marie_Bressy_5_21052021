@@ -7,7 +7,7 @@ function templateArticle (unArticle){
         <p class="description-product"> Description : ${unArticle.description}</p>
         <p class="price-product"> Prix : ${unArticle.price} $</p>
         <div class="d-flex justify-content-center my-1">
-        <a class="btn btn-primary" href="./focusproduit.html?id=${unArticle._id}" role="button">Voir l'article</a>
+        <a class="btn btn-primary" href="./focus_product.html?id=${unArticle._id}" role="button">Voir l'article</a>
         </div>
       </div>
     </div>

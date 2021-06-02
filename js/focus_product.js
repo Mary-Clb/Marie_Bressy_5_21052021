@@ -5,7 +5,7 @@ function templateFocusArticle (unArticle){
    //(fonction callback colorArticle qui crée les options de la liste déroulante)
     console.log(options); 
     // interpolation = insérer variable dans chaine de caractère
-    return `<div class="col my-2">
+    return `<div class="col-md-6 my-2 mx-auto">
     <div class="card template-product">
       <img src="${unArticle.imageUrl}" class="card-img-top" alt="ours en peluche"> 
       <div class="card-body">
@@ -33,7 +33,7 @@ function colorArticle (color) {
 
 function addPanier(unId){
     //console.log((unArticle));
-    mesArticles.forEach(function(article){ // On crée une boucle pour dire que pour chaque article on utilise le template créé plus haut
+    mesArticles.forEach(function(article){ 
     //    console.log(article);
       
         if(unId == article._id) {
@@ -50,7 +50,6 @@ panier.push(article);
 localStorage.setItem('panier',JSON.stringify(panier));
             }
            
-//console.log(JSON.stringify(article));
          }
     })
 }
