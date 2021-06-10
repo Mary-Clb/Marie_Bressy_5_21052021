@@ -54,32 +54,43 @@ DisableButton();
 
 
 function ValidForm () {
-    let formData = new FormData(document.getElementById('form-order'));
-    fetch("https://ab-p5-api.herokuapp.com/api/teddies/order"), {
-        
-        // Adding method type
-        method: "POST",
-        
-        // Adding body or contents to send
-        body: JSON.stringify({
-            body: formData,
-            panier: localStorage.getItem('panier');
-        }),
-        
-        // Adding headers to the request
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    })
-.then(response => response.json())
-// Displaying results to console
-.then(json => console.log(json));
-
-
-
-
-    console.log(formData);
-    return false;
-}
-
-window.onload = PrintCart;
+    //  let formData = new FormData(document.getElementById('form-order'));
+  
+      var panier = JSON.parse(localStorage.getItem('panier'));
+      var products = [];
+  
+  // creation de l'objet contact
+      let contact = {};
+      contact.firstName = document.getElementById('firstName').value;
+      contact.lastName = document.getElementById('lastName').value;
+      contact.address = document.getElementById('address').value;
+      contact.city = document.getElementById('city').value;
+      contact.email = document.getElementById('email').value;
+      // je met les données contact et products dans une variable datas que j'envoie
+      // a l'api en POST
+      let datas = JSON.stringify({
+          'contact': contact, 'products': panier
+       })
+       console.log(datas);
+    //   return false;
+      fetch("https://ab-p5-api.herokuapp.com/api/teddies/order", {
+  
+          // Adding method type
+          method: "POST",
+          // Adding headers to the request
+          headers: new Headers({
+              "Content-type": "application/json; charset=UTF-8"
+          }),
+          // Adding body or contents to send
+         body: datas
+      })
+  .then(response => response.json())
+  // Displaying results to console
+  .then(json => console.log(json));
+  
+    //  console.log(formData);
+      return false;
+  }
+  
+  window.onload = PrintCart;
+  
