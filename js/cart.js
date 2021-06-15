@@ -16,6 +16,7 @@ function DeleteCart() {
 }
 
 function TemplateTotalPrice() {
+    localStorage.setItem('total', total);
     return `<div class="d-flex justify-content-end my-2">
     <p>Prix total de votre commande : ${total}$</p>
   </div>`;
@@ -30,7 +31,7 @@ function DisableButton() {
       addBtn.setAttribute("disabled", true);
       console.log(addBtn);
     }else{
-       
+
         addBtn.disabled = false;
     }
 }
@@ -55,10 +56,10 @@ DisableButton();
 
 function ValidForm () {
     //  let formData = new FormData(document.getElementById('form-order'));
-  
+
       var panier = JSON.parse(localStorage.getItem('panier'));
       var products = [];
-  
+
   // creation de l'objet contact
       let contact = {};
       contact.firstName = document.getElementById('firstName').value;
@@ -66,6 +67,7 @@ function ValidForm () {
       contact.address = document.getElementById('address').value;
       contact.city = document.getElementById('city').value;
       contact.email = document.getElementById('email').value;
+        localStorage.setItem('contact', JSON.stringify(contact));
       // je met les données contact et products dans une variable datas que j'envoie
       // a l'api en POST
       let datas = JSON.stringify({
@@ -74,23 +76,22 @@ function ValidForm () {
        console.log(datas);
     //   return false;
       fetch("https://ab-p5-api.herokuapp.com/api/teddies/order", {
-  
-          // Adding method type
           method: "POST",
-          // Adding headers to the request
           headers: new Headers({
               "Content-type": "application/json; charset=UTF-8"
           }),
-          // Adding body or contents to send
          body: datas
       })
   .then(response => response.json())
   // Displaying results to console
-  .then(json => console.log(json));
-  
-    //  console.log(formData);
-      return false;
+  .then(function (json){
+  localStorage.setItem('order', JSON.stringify(json.orderId));
+  window.location.replace("./confirmation.html");
+  });
+
+    return false;
   }
-  
+
   window.onload = PrintCart;
+
   
