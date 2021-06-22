@@ -1,5 +1,5 @@
 function templateArticle (unArticle){
-    return `<div class="col-4 my-2">
+    return `<div class="col-sm-12 col-md-4 my-2">
     <div class="card template-product">
       <img src="${unArticle.imageUrl}" class="card-img-top img-fluid" alt="ours en peluche">
       <div class="card-body">

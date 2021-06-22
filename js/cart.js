@@ -3,7 +3,7 @@ var total = 0;
 function TemplateCart(article) {
     return `<div class="col-lg-6 mx-auto my-4 border py-3">
     <div class="d-flex justify-content-between">
-      <p>${article.name} - ${article.quantity} - ${article.price} $</p><p>${article.quantity * article.price}  $</p>
+      <p>${article.name} - Quantité : ${article.quantity} - Prix unitaire : ${article.price} $</p><p>Total : ${article.quantity * article.price}  $</p>
     </div> `
 }
 
@@ -68,8 +68,8 @@ function ValidForm () {
       contact.city = document.getElementById('city').value;
       contact.email = document.getElementById('email').value;
         localStorage.setItem('contact', JSON.stringify(contact));
-      // je met les données contact et products dans une variable datas que j'envoie
-      // a l'api en POST
+      // Met les données contact et products dans une variable datas à envoyer
+      // a l'APIca en POST
       let datas = JSON.stringify({
           'contact': contact, 'products': panier
        })
