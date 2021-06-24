@@ -4,3 +4,7 @@
     height: 270px;
     object-fit: cover;
 }
+
+.p-bold{
+    font-weight: bold;
+}

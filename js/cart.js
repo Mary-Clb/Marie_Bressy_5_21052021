@@ -1,9 +1,9 @@
 var total = 0;
 
 function TemplateCart(article) {
-    return `<div class="col-lg-6 mx-auto my-4 border py-3">
+    return `<div class="col-lg-6 mx-auto my-2 border py-3">
     <div class="d-flex justify-content-between">
-      <p>${article.name} - Quantité : ${article.quantity} - Prix unitaire : ${article.price} $</p><p>Total : ${article.quantity * article.price}  $</p>
+    <p class="p-bold">${article.name} -</p><p class="p-bold">Qté :</p> ${article.quantity}<p class="p-bold">P.U :</p><p> ${article.price}$ <p class="p-bold">Total :</p><p> ${article.quantity * article.price} $</p>
     </div> `
 }
 
@@ -18,7 +18,7 @@ function DeleteCart() {
 function TemplateTotalPrice() {
     localStorage.setItem('total', total);
     return `<div class="d-flex justify-content-end my-2">
-    <p>Prix total de votre commande : ${total}$</p>
+    <p class="p-bold">Prix total de votre commande : ${total}$</p>
   </div>`;
 }
 
