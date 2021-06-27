@@ -55,41 +55,36 @@ DisableButton();
 
 
 function ValidForm () {
-    //  let formData = new FormData(document.getElementById('form-order'));
-
-      var panier = JSON.parse(localStorage.getItem('panier'));
+      var panier = JSON.parse(localStorage.getItem('panier')); //JSON vers JAVASCRIPT
       var products = [];
 
-  // creation de l'objet contact
-      let contact = {};
+      let contact = {}; // creation de l'objet contact
       contact.firstName = document.getElementById('firstName').value;
       contact.lastName = document.getElementById('lastName').value;
       contact.address = document.getElementById('address').value;
       contact.city = document.getElementById('city').value;
       contact.email = document.getElementById('email').value;
-        localStorage.setItem('contact', JSON.stringify(contact));
+        localStorage.setItem('contact', JSON.stringify(contact)); //JAVASCRIPT vers JSON
       // Met les données contact et products dans une variable datas à envoyer
-      // a l'APIca en POST
+      // à l'API avec la méthode POST
       let datas = JSON.stringify({
           'contact': contact, 'products': panier
        })
        console.log(datas);
-    //   return false;
-      fetch("https://ab-p5-api.herokuapp.com/api/teddies/order", {
-          method: "POST",
-          headers: new Headers({
-              "Content-type": "application/json; charset=UTF-8"
-          }),
-         body: datas
-      })
-  .then(response => response.json())
-  // Displaying results to console
-  .then(function (json){
-  localStorage.setItem('order', JSON.stringify(json.orderId));
-  window.location.replace("./confirmation.html");
-  });
+             fetch("https://ab-p5-api.herokuapp.com/api/teddies/order", {
+                method: "POST",
+                headers: new Headers({
+                "Content-type": "application/json; charset=UTF-8"
+             }),
+                body: datas
+            })
+                .then(response => response.json())
+                .then(function (json){
+                localStorage.setItem('order', JSON.stringify(json.orderId));
+                window.location.replace("./confirmation.html");
+                });
 
-    return false;
+                return false;
   }
 
   window.onload = PrintCart;

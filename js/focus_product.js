@@ -44,32 +44,29 @@ function colorArticle (color) {
 }
 //concaténation = mettre à la suite des chaines de caractères
 
-function addPanier(unId){
+function addPanier(unId){ // fonction pour l'ajout des articles au panier
     let userOption = document.getElementById('option-color');
-    if (userOption.value == 0) {  
+    if (userOption.value == 0) {  //si l'utilisateur ne choisit pas de couleur = return 0
         return;
     }    
     mesArticles.forEach(function(article){ 
    
       
         if(unId == article._id) {
-            if(localStorage.getItem('panier')){
+            if(localStorage.getItem('panier')){  //on regarde s'il y'a déjà des articles au panier
                 let panierJS = localStorage.getItem('panier');
                 let panier=JSON.parse(panierJS);
                 let existingArticle = false;
-                panier.forEach(function(unArticle){
-                    if (article._id == unArticle._id) {
+                panier.forEach(function(unArticle){ // Parcourir les articles
+                    if (article._id == unArticle._id) { // Si l'ajout est un article déjà existant au panier on rajoute 1 en qté
                         existingArticle = true;
                         unArticle.quantity += 1;
                     }
                 })
                 if (existingArticle == false) {
-                    article.quantity = 1;
+                    article.quantity = 1; // si l'ajout est un article non existant on définit la quantité sur 1
                     panier.push(article);  
                 }
-                //article.quantity += 1;
-                //console.log(panier);
-                //panier.push(article);
                 localStorage.setItem('panier', JSON.stringify(panier));
             }else{
                 let panier = [];
