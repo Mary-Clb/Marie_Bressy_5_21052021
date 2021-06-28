@@ -29,6 +29,9 @@ function afficheArticle () {
             containerArticles.innerHTML+=templateArticle(article);
         })
       })
+      .catch(function(error) {
+        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+      })
 }
 
 window.onload = afficheArticle; // charger les articles après le chargement de la page

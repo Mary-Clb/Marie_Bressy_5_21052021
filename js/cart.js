@@ -59,11 +59,37 @@ function ValidForm () {
       var products = [];
 
       let contact = {}; // creation de l'objet contact
-      contact.firstName = document.getElementById('firstName').value;
-      contact.lastName = document.getElementById('lastName').value;
-      contact.address = document.getElementById('address').value;
-      contact.city = document.getElementById('city').value;
-      contact.email = document.getElementById('email').value;
+      if(ValidateString(document.getElementById('firstName').value)){
+        contact.firstName = document.getElementById('firstName').value;
+      }
+      else{
+          return;
+      }
+      if(ValidateString(document.getElementById('lastName').value)){
+        contact.lastName = document.getElementById('lastName').value;
+      }
+      else{
+          return;
+      }
+      if(ValidateAddress(document.getElementById('address').value)){
+        contact.address = document.getElementById('address').value;
+      }
+      else{
+          return;
+      }
+      if(ValidateString(document.getElementById('city').value)){
+        contact.city = document.getElementById('city').value;
+      }
+      else{
+          return;
+      }
+      if(ValidateEmail(document.getElementById('email').value)){
+        contact.email = document.getElementById('email').value;
+      }else{
+          return;
+      }
+    //  return;
+     
         localStorage.setItem('contact', JSON.stringify(contact)); //JAVASCRIPT vers JSON
       // Met les données contact et products dans une variable datas à envoyer
       // à l'API avec la méthode POST
@@ -86,6 +112,41 @@ function ValidForm () {
 
                 return false;
   }
+
+
+  //FONCTIONS DE VERIFICATION DU FORMULAIRE
+  function ValidateEmail(mail) {
+    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (regex.test(mail))
+  {
+    //alert("OK!");
+    return (true);
+  }
+    alert("You have entered an invalid email address!");
+    return (false);
+}
+
+function ValidateString(aField) {
+    var regex=/^(\w+\S+)$/;
+    if (regex.test(aField))
+  {
+  //  alert("OK!");
+    return (true);
+  }
+    alert("You have entered an invalid text!");
+    return (false);
+}
+
+function ValidateAddress(aField) {
+    var regex=/\w+(\s\w+){2,}/;
+    if (regex.test(aField))
+  {
+  //  alert("OK!");
+    return (true);
+  }
+    alert("You have entered an invalid text!");
+    return (false);
+}
 
   window.onload = PrintCart;
 
